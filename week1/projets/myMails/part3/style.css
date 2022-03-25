@@ -1,0 +1,89 @@
+html {
+    background-color: #F5F6FA;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+.blockMessageCounter {
+    border: 1px solid gray;
+    display: flex;
+    width: 50vw;
+    background-color: #FFF;
+}
+
+.messageCounter {
+    margin-left: 3%;
+    font-weight: 500;
+}
+
+#number {
+    margin-left: 1%;
+    color: blue;
+}
+
+.blockAddMessage {
+    border: 1px solid gray;
+    display: flex;
+    width: 50vw;
+    background-color: #FFF;
+    justify-content: center;
+    padding: 1% 0px;
+}
+
+#addBar {
+    width: 75%;
+    height: 25px;
+    margin-right: 3%;
+    border-radius: 30px;
+}
+
+#addButton {
+    color: blue;
+    border: 1px solid blue;
+    border-radius: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    width: 50vw;
+    background-color: #FFF;
+}
+
+.enterCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100vw;
+}
+
+.name {
+    margin: 0px;
+}
+
+.message {
+    margin: 0px;
+}
+
+.avatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin: 2%;
+}
+
+.icon-trash {
+    height: 30px;
+    width: 30px;
+    margin-right: 2%;
+}

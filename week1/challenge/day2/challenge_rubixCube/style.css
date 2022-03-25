@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+}
+
+.cube {
+    height: 400px;
+    width: 400px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.ligne {
+    display: flex;
+    height: 33vh;
+}
+
+.ligne2 {
+    display: flex;
+    height: 33vh;
+}
+
+.ligne3 {
+    display: flex;
+    height: 33vh;
+}
+
+.carre {
+    background-color: blue;
+    width: 33vw;
+    border: 1px solid gray;
+}
+
+#carBlue {
+    background-color: blue;
+}
+
+#carGreen {
+    background-color: green;
+}
+
+#carRed {
+    background-color: red;
+}

@@ -1,0 +1,43 @@
+html {
+    background-color: #F5F6FA;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+.block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid gray;
+    width: 50vw;
+    background-color: #FFFFFF;
+}
+
+.name {
+    margin: 0px;
+}
+
+.message {
+    margin: 0px;
+}
+
+.avatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    margin-left: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+.icon-trash {
+    height: 15px;
+    width: 15px;
+    margin-right: 2%;
+}

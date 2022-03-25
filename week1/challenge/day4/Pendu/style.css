@@ -1,0 +1,91 @@
+body {
+    margin: 0;
+    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#page1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50vw;
+}
+
+.choiseWord {
+    display: flex;
+    height: 50px;
+    width: 100%;
+    justify-content: center;
+    padding: 5%;
+}
+
+#wordBar {
+    margin-right: 5%;
+    width: 80%;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding-left: 2%;
+    font-size: 20px;
+}
+
+#wordButton {
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 15%;
+    background-color: lightgreen;
+    color: #FFF;
+    font-size: 20px;
+}
+
+#titlePage1 {
+    color: #FFBB00;
+    font-size: 100px;
+    margin: 0;
+}
+
+/*page2*/
+
+#page2 {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+}
+
+#underScoreList {
+    display: flex;
+    justify-content: space-around;
+}
+
+#underscoreClass {
+    color: #FFF;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.choiseProposition {
+    display: flex;
+    height: 50px;
+    justify-content: center;
+    padding: 5%;
+}
+
+#propositionBar {
+    width: 60%;
+    margin-right: 5%;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 20px;
+    padding-left: 2%;
+}
+
+#propositionButton {
+    width: 15%;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: lightgreen;
+    color: #FFF;
+    font-size: 20px;
+}

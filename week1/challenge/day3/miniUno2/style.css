@@ -1,0 +1,83 @@
+body {
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 250px;
+    margin: 0;
+}
+
+.collection-cards {
+    display: flex;
+}
+
+.card {
+    height: 500px;
+    width: 300px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-enter {
+    height: 450px;
+    width: 225px;
+    background-color: red;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+.top-left {
+    margin: 0;
+    margin-top: 3%;
+    color: white;
+    padding-left: 5%;
+    font-weight: 900;
+    font-size: 40px;
+}
+
+.center-letter {
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-size:250px;
+    text-decoration: underline;
+}
+
+/* .cercle {
+    height: 250px;
+    background-color: white;
+    border-radius: 50%;
+    transform: rotate(-50deg);
+} */
+
+.bottom-right {
+    margin: 0;
+    margin-top: 3%;
+    color: white;
+    padding-left: 5%;
+    font-size: 40px;
+    font-weight: 900;
+    display: flex;
+    transform: rotate(-180deg);
+}
+
+#card-blue {
+    background-color: blue;
+}
+
+#card-green {
+    background-color: green;
+}
