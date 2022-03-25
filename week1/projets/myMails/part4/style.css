@@ -40,6 +40,10 @@ body {
     font-size: medium;
 }
 
+#searchBar:focus {
+    outline: 0;
+}
+
 #searchButton {
     color: blue;
     border: 1px solid blue;
@@ -67,6 +71,10 @@ body {
     margin-right: 3%;
     border-radius: 30px;
     padding-left: 20px;
+}
+
+#addBar:focus {
+    outline: 0;
 }
 
 #addButton {
