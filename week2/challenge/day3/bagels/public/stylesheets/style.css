@@ -1,0 +1,32 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #343A41 !important;
+  height: 100vh;
+}
+
+a {
+  color: #00B7FF;
+}
+
+nav {
+  height: 50px;
+  width: 80vw;
+  background-color: #D0D9F8;
+  border-radius: 10px;
+}
+
+a {
+  height: 80%;
+}
+
+h4 {
+  color: grey;
+}
+
+.content {
+  height: 90vh;
+}
+
+.card {
+  background-color: #7049AC !important;
+}
