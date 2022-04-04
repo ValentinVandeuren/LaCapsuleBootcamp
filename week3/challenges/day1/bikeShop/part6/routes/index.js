@@ -4,11 +4,11 @@ const stripe = require('stripe')('sk_test_51KjezqCKa4Cmp4ydCQzPBk7VWXWxYIqn3nEVI
 
 var dataBike = [
   { name: 'BIKO45', urlImage: '/images/bike-1.jpg', price: 679, mea: true },
-  { name: 'ZOOK7', urlImage: '/images/bike-2.jpg', price: 799, mea: false },
-  { name: 'LIKO89', urlImage: '/images/bike-3.jpg', price: 839, mea: false },
-  { name: 'GEWO8', urlImage: '/images/bike-4.jpg', price: 1249, mea: false },
-  { name: 'KIWIT', urlImage: '/images/bike-5.jpg', price: 899, mea: false },
-  { name: 'NASAY', urlImage: '/images/bike-6.jpg', price: 1399, mea: false }
+  { name: 'ZOOK7', urlImage: '/images/bike-2.jpg', price: 799, mea: true },
+  { name: 'LIKO89', urlImage: '/images/bike-3.jpg', price: 839, mea: true },
+  { name: 'GEWO8', urlImage: '/images/bike-4.jpg', price: 1249, mea: true },
+  { name: 'KIWIT', urlImage: '/images/bike-5.jpg', price: 899, mea: true },
+  { name: 'NASAY', urlImage: '/images/bike-6.jpg', price: 1399, mea: true }
 ];
 
 /* GET home page. */

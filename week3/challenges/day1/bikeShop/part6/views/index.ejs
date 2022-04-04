@@ -29,6 +29,21 @@
 
   <div class="container">
     <div class="row">
+      <div class="bandeau">
+        <%
+        for(let i=0; i<dataBike.length; i++){ 
+        if(dataBike[i].mea == true){
+        %>
+        <div class="bandeauInterieur">
+          <img class="imageBanner" src="<%= dataBike[i].urlImage %>" alt="">
+          <div class="inBandeau">
+            <h5 class="card-title nameBandeau text-center"><%= dataBike[i].name %></h5>
+            <h4 class="card-text m-0 mr-3"><%= dataBike[i].price %>€</h4>
+          </div>
+          <a href="shop?name=<%= dataBike[i].name %>&urlImage=<%= dataBike[i].urlImage %>&price=<%= dataBike[i].price %>" class="btn btn-primary">Buy</a>
+        </div>
+        <% }} %>
+      </div>
       <% for(let i=0; i<dataBike.length; i++){ %>
       <div class="card col-lg-4 col-md-6 col-sm-12" style="width: 18rem;">
         <img src=<%= dataBike[i].urlImage %> class="card-img-top" alt="...">
