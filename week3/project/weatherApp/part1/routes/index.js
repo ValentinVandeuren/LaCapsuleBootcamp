@@ -22,7 +22,7 @@ router.post('/add-city', function(req, res, next) {
   let status = false;
 
   for (let i = 0; i < req.session.cityList.length; i++) {
-    if (req.session.cityList[i].name.toLowerCase() == req.body.cityName.toLowerCase()) {
+    if (req.session.cityList[i].name.toLowerCase() == newCity.toLowerCase()) {
       status = true;
     }
   }
