@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://kit.fontawesome.com/9518c0153b.js" crossorigin="anonymous"></script>
+    <title>WeatherApp</title>
+</head>
+<body>
+    <div class="container-fluid d-flex flex-column justify-content-center align-items-center p-0">
+        <div class="row col-12 p-0">
+            <!-- HEADER -->
+            <nav class=" header navbar navbar-light bg-dark col-lg-12">
+                Weather App
+                <a class="logout" href="/login">Deconnexion</a>
+            </nav>
+        </div>
+        <div class="row col-lg-8">
+            <!-- GRID -->
+            <div class="contentCity d-flex justify-content-lg-end justify-content-center mb-4">
+                <div class="shearchCity">
+                    <form action="/add-city" method="POST" class="d-flex justify-content-end">
+                      <input type="hidden" name="cityID" value="">
+                      <input type="text" name="cityAdd" placeholder="Enter city name">
+                      <button type="submit" class="addButton">Add</button>
+                    </form>
+                </div>
+            </div>
+            <div class="content d-flex flex-column flex-lg-row justify-content-lg-between align-items-center align-items-lg-start">
+                <img class="imageMap" src="/images/map.png">
+                <div class="contentListCity d-flex flex-column align-items-center">
+                    <h1 class="updateCities">Update Cities <i class="fa-solid fa-arrows-rotate"></i></h1>
+                    <% for(let i=0; i <dataCity.length; i++){ %>
+                    <div class="cardCity">
+                        <h5 class="m-0"><%= dataCity[i].name %></h5>
+                        <div class="cardCityCenter">
+                            <p class="weatherCity"><%= dataCity[i].climat %></p>
+                            <i class="<%= dataCity[i].icon %> iconTemp"></i>
+                            <p class="max-celcius"><%= dataCity[i].maxTemp %>°c</p>
+                            <p class="min-celcius"><%= dataCity[i].minTemp %></p>
+                        </div>
+                        <i class="fa-solid fa-circle-xmark cross"></i>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script> 
+</body>
+</html>

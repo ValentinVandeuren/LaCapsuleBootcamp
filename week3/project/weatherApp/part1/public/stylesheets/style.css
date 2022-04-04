@@ -1,0 +1,157 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  padding: 0;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.empty {
+  font-size: 16px;
+  color:#ffc107;
+}
+
+.logout {
+  margin-left: auto;
+  margin-right: 15px;
+}
+
+
+
+.home {
+  background-image: url('../images/weather.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+  color: #FFFFFF;
+  text-shadow: 1px 1px 1px black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.navItem{
+  margin-bottom: 10px;
+}
+
+.get_started{
+  margin-bottom: 70px;
+}
+
+.header {
+  margin-bottom: 50px;
+  color: #FFFFFF;
+}
+
+.contentCity {
+  width: 100%;
+}
+
+.shearchCity {
+  width: 49%;
+}
+
+.addButton {
+  background-color: #ffc107;
+  border: none;
+}
+
+input {
+  height: 40px;
+  width: 100%;
+  border-width: 1px;
+  border-right-width: 0;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  padding-left: 10px;
+}
+
+.addButton {
+  height: 40px;
+  width: 55px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.imageMap {
+  width: 49%;
+  height: 400px;
+}
+
+.content {
+  width: 100%;
+}
+
+.contentListCity {
+  width: 49%;
+}
+
+.updateCities {
+  font-size: 25px;
+  margin: 20px 0px;
+}
+
+.cardCity {
+  height: 75px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 5px;
+  border-width: 0.5px;
+  padding: 0 5%;
+  margin-bottom: 1px;
+}
+
+.cardCityCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+
+.weatherCity {
+  margin: 0px 2px;
+  font-size: 15px
+}
+
+.iconTemp {
+  font-size: 20px;
+  color: #49484A;
+  margin: 0px 2px;
+}
+
+.max-celcius {
+  background-color: #ffc107;
+  border-radius: 10px;
+  padding: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: 0px 2px;
+}
+
+.min-celcius {
+  background-color: #49484A;
+  color: #FFF;
+  border-radius: 10px;
+  padding: 1%;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin: 0px 2px;
+}
+
+.cross {
+  color: #ffc107;
+  font-size: 15px;
+}
+
+.cross:hover {
+  cursor: pointer;
+}
