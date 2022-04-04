@@ -24,7 +24,7 @@
                 <div class="shearchCity">
                     <form action="/add-city" method="POST" class="d-flex justify-content-end">
                       <input type="hidden" name="cityID" value="">
-                      <input type="text" name="cityAdd" placeholder="Enter city name">
+                      <input type="text" name="cityName" placeholder="Enter city name">
                       <button type="submit" class="addButton">Add</button>
                     </form>
                 </div>
@@ -33,18 +33,24 @@
                 <img class="imageMap" src="/images/map.png">
                 <div class="contentListCity d-flex flex-column align-items-center">
                     <h1 class="updateCities">Update Cities <i class="fa-solid fa-arrows-rotate"></i></h1>
-                    <% for(let i=0; i <dataCity.length; i++){ %>
+                    <% if(cityList.length == 0){ %>
+                    <h6 style="color: red;">No cities found</h6>
+                    <% } else { %>
+                    <% for(let i=0; i <cityList.length; i++){ %>
                     <div class="cardCity">
-                        <h5 class="m-0"><%= dataCity[i].name %></h5>
+                        <h5 name="position" class="m-0"><%= cityList[i].name %></h5>
                         <div class="cardCityCenter">
-                            <p class="weatherCity"><%= dataCity[i].climat %></p>
-                            <i class="<%= dataCity[i].icon %> iconTemp"></i>
-                            <p class="max-celcius"><%= dataCity[i].maxTemp %>°c</p>
-                            <p class="min-celcius"><%= dataCity[i].minTemp %></p>
+                            <p class="weatherCity"><%= cityList[i].climat %></p>
+                            <i class="<%= cityList[i].icon %> iconTemp"></i>
+                            <p class="max-celcius"><%= cityList[i].maxTemp %>°c</p>
+                            <p class="min-celcius"><%= cityList[i].minTemp %></p>
                         </div>
-                        <i class="fa-solid fa-circle-xmark cross"></i>
+                        <a href="delete-city?position=<%= i %>"><i class="fa-solid fa-circle-xmark cross"></i></a>
                     </div>
-                    <% } %>
+                    <%
+                    }
+                    } 
+                    %>
                 </div>
             </div>
         </div>
