@@ -1,17 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var request = require('sync-request');
-let { cityModel } = require('./bdd');
-
-var dataCity = [
-  {name: "Paris", climat: "nuageux", icon: "fa-solid fa-cloud", maxTemp: 7.22, minTemp: 5.56},
-  {name: "Lyon", climat: "Ciel dégagé", icon: "fa-solid fa-sun", maxTemp: 6, minTemp: 3.89}
-]
+let cityModel = require('./bdd');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  req.session.cityList = []
-  res.render('index', { cityList: req.session.cityList });
+router.get('/', async function(req, res, next) {
+  var cityList = await cityModel.find()
+  res.render('index', { cityList });
 });
 
 router.get('/login', function(req, res, next) {
@@ -22,11 +17,11 @@ router.post('/add-city', async function(req, res, next) {
   let newCity = req.body.cityName;
   var requete = request("GET",`https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=87037779aa1fdbb43df93806e9f928ec&lang=fr&units=metric`);
   var resultWS = JSON.parse(requete.body);
-  if(!req.session.cityList) req.session.cityList = [];
   let status = false;
+  var cityList = await cityModel.find()
 
-  for (let i = 0; i < req.session.cityList.length; i++) {
-    if (req.session.cityList[i].name.toLowerCase() == newCity.toLowerCase()) {
+  for (let i = 0; i < cityList.length; i++) {
+    if (cityList[i].name.toLowerCase() == newCity.toLowerCase()) {
       status = true;
     }
   }
@@ -34,14 +29,7 @@ router.post('/add-city', async function(req, res, next) {
   try{
     if (status == false) {
       if(newCity.toLowerCase() == resultWS.name.toLowerCase()){
-        // req.session.cityList.push({
-        //   name: resultWS.name,
-        //   climat: resultWS.weather[0].description,
-        //   icon: resultWS.weather[0].icon,
-        //   maxTemp: resultWS.main.temp_max,
-        //   minTemp: resultWS.main.temp_min
-        // })
-        req.session.city = new cityModel({
+        var cityList = new cityModel({
           name: resultWS.name,
           climat: resultWS.weather[0].description,
           icon: resultWS.weather[0].icon,
@@ -49,19 +37,45 @@ router.post('/add-city', async function(req, res, next) {
           minTemp: resultWS.main.temp_min
         })
       
-        await req.session.city.save();
+        await cityList.save();
       }
     }
 
   } catch (error){
     
   }
-  res.render('index', { cityList: req.session.city });
+
+  cityList = await cityModel.find()
+  res.render('index', { cityList });
 });
 
-router.get('/delete-city', function(req, res, next){
-  req.session.city.splice(req.query.position, 1)
-  res.render('index', {cityList: req.session.city})
+router.get('/delete-city', async function(req, res, next){
+  await cityModel.deleteMany({ name: req.query.name })
+  cityList = await cityModel.find()
+  res.render('index', {cityList})
+})
+
+router.get('/updateData', async function(req, res, next){
+  var cityList = await cityModel.find()
+  
+  for(let i=0; i< cityList.length; i++){
+    let newCity = cityList[i].name;
+    var requete = request("GET",`https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=87037779aa1fdbb43df93806e9f928ec&lang=fr&units=metric`);
+    var resultWS = JSON.parse(requete.body);
+    await cityModel.updateOne(
+      { _id: cityList[i].id },
+      {
+        name: resultWS.name,
+        climat: resultWS.weather[0].description,
+        icon: resultWS.weather[0].icon,
+        maxTemp: resultWS.main.temp_max,
+        minTemp: resultWS.main.temp_min
+      }
+    );
+  }
+
+  cityList = await cityModel.find()
+  res.render('index', { cityList })
 })
 
 module.exports = router;

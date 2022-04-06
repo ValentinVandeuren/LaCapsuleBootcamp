@@ -93,8 +93,15 @@ input {
 }
 
 .updateCities {
-  font-size: 25px;
+  font-size: 15px;
   margin: 20px 0px;
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.updateCities:hover {
+  color: inherit;
+  text-decoration: inherit;
 }
 
 .cardCity {
