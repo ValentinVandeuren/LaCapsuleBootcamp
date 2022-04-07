@@ -82,20 +82,20 @@ router.get('/updateData', async function(req, res, next){
 /*sing-up*/
 
 router.post('/sign-up', async function(req, res, next) {
-  let isLogin = false;
+  let email = await usersModel.findOne({emailAddress: req.body.emailAddressUp});
 
-  var newUser = new usersModel({
-    userName: req.body.userName,
-    emailAddress: req.body.emailAddress,
-    password: req.body.password
-  })
-  req.session.currentId = await newUser.save();
-  req.session.currentName = req.body.userName;
+  if(!email){
+    var newUser = new usersModel({
+      userName: req.body.userName,
+      emailAddress: req.body.emailAddressUp,
+      password: req.body.password
+    })
+    req.session.currentId = await newUser.save();
+    req.session.currentName = req.body.userName;
 
-  if(isLogin == true){
-    res.redirect('/weather');
-  } else {
-    res.redirect('/');
+    res.redirect('/weather')
+  }else {
+    res.redirect('/')
   }
 });
 
@@ -112,6 +112,14 @@ router.post('/sign-in', async function(req, res, next) {
   } else {
     res.redirect('/');
   }
+});
+
+/*logout*/
+
+router.get('/logout', async function(req, res, next) {
+  req.session.user = null;
+
+  res.redirect('/')
 });
 
 module.exports = router;
