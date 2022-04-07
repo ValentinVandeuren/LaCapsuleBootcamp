@@ -26,18 +26,18 @@
             <div class="formArea">
               <h4 class="titleForm">Sign Up</h4>
 
-              <form>
+              <form action="/sign-up" method="post">
                 <div class="form-group">
                   <label for="exampleInputUsername">Username</label>
-                  <input type="text" class="form-control" placeholder="Enter username">
+                  <input type="text" name="userName" class="form-control" placeholder="Enter username">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input type="email" name="emailAddress" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control"  placeholder="Enter password">
+                  <input type="password" name="password" class="form-control"  placeholder="Enter password">
                 </div>
 
                 <button type="submit" class="btn btn-info">Submit</button>
@@ -56,11 +56,11 @@
               <form action="/sign-in" method="POST">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input name="email" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                  <input name="emailAdressIn" type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
-                  <input name="password" type="password" class="form-control" placeholder="Enter password">
+                  <input name="passwordIn" type="password" class="form-control" placeholder="Enter password">
                 </div>
 
                 <button type="submit" class="btn btn-info">Submit</button>

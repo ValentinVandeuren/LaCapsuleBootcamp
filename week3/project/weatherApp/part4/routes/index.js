@@ -1,22 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var request = require('sync-request');
-let cityModel = require('./bdd');
+var cityModel = require('../models/cities');
+var usersModel = require('../models/users');
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
+router.get('/weather', async function(req, res, next) {
   var cityList = await cityModel.find()
   res.render('index', { cityList });
 });
 
-router.get('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('login', {});
 });
 
 router.post('/add-city', async function(req, res, next) {
   let newCity = req.body.cityName;
-  var requete = request("GET",`https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=87037779aa1fdbb43df93806e9f928ec&lang=fr&units=metric`);
-  var resultWS = JSON.parse(requete.body);
+  let requete = request("GET",`https://api.openweathermap.org/data/2.5/weather?q=${newCity}&appid=87037779aa1fdbb43df93806e9f928ec&lang=fr&units=metric`);
+  let resultWS = JSON.parse(requete.body);
   let status = false;
   var cityList = await cityModel.find()
 
@@ -77,5 +78,40 @@ router.get('/updateData', async function(req, res, next){
   cityList = await cityModel.find()
   res.render('index', { cityList })
 })
+
+/*sing-up*/
+
+router.post('/sign-up', async function(req, res, next) {
+  let isLogin = false;
+
+  var newUser = new usersModel({
+    userName: req.body.userName,
+    emailAddress: req.body.emailAddress,
+    password: req.body.password
+  })
+  req.session.currentId = await newUser.save();
+  req.session.currentName = req.body.userName;
+
+  if(isLogin == true){
+    res.redirect('/weather');
+  } else {
+    res.redirect('/');
+  }
+});
+
+/*sing-in*/
+
+router.post('/sign-in', async function(req, res, next) {
+  let user = await usersModel.findOne({emailAddress: req.body.emailAdressIn});
+  
+  if(req.body.passwordIn == user?.password){
+    req.session.currentName = user.userName;
+    req.session.currentId = user.id;
+
+    res.redirect('/weather');
+  } else {
+    res.redirect('/');
+  }
+});
 
 module.exports = router;
