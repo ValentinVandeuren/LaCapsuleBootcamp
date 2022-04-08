@@ -13,6 +13,7 @@ router.get('/weather', async function(req, res, next) {
   }
 });
 
+/* login route */
 router.get('/', function(req, res, next) {
   res.render('login', {});
 });
