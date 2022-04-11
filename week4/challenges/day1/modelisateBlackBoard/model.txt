@@ -11,7 +11,7 @@ description: String,
 poids: Number,
 prix: Number,
 stocks: Number,
-image: Buffer,
+image: String,
 
 Users: 
 Prenom: String,
@@ -25,7 +25,7 @@ dateInscription: Date,
 Commandes:
 date: Date,
 usersId: { type: mongoose.shema.Types.ObjectId, ref: 'users' },
-paye; Booléan,
+paye; String,
 datePaiement: Date,
 expedie: Booléan,
 dateExpedie: Date,
