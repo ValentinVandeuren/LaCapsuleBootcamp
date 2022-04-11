@@ -1,0 +1,54 @@
+Model:
+- articles,
+- users,
+- commandes,
+- messages,
+- taches,
+
+Articles:
+label: String,
+description: String,
+poids: Number,
+prix: Number,
+stocks: Number,
+image: Buffer,
+
+Users: 
+Prenom: String,
+Nom: String,
+email: String,
+password: String,
+age: Number,
+sex: Booléan
+dateInscription: Date,
+
+Commandes:
+date: Date,
+usersId: { type: mongoose.shema.Types.ObjectId, ref: 'users' },
+paye; Booléan,
+datePaiement: Date,
+expedie: Booléan,
+dateExpedie: Date,
+adress: String,
+ville: String,
+codePostale: Number,
+details: { type: mongoose.shema.Types.ObjectId, ref: 'detail' },
+
+detail:
+libelle: String,
+description: String,
+poids: Number,
+prix: Number,
+image: String,
+
+messages:
+icon: Booléan,
+object: String,
+expediteur: String,
+date: Date,
+
+taches:
+title: String,
+content: String
+echeance: Date,
+dateDeDemande: Date,
