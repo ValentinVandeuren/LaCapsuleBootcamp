@@ -27,73 +27,12 @@
 
   <body id="page-top">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-      <a class="navbar-brand mr-1" href="/">Black Board</a>
-
-      <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-        <i class="fas fa-bars"></i>
-      </button>
-
-      <!-- Navbar -->
-      <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link" href="/tasks-page">
-            <i class="fas fa-bell fa-fw"></i>
-          </a>
-        </li>
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link" href="/messages-page">
-            <i class="fas fa-envelope fa-fw"></i>
-          </a>
-        </li>
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user-circle fa-fw"></i>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-            <h6 class="dropdown-header">Hi Mike Doe</h6>
-          </div>
-        </li>
-      </ul>
-
-    </nav>
+    <%- include('header'); %>
 
     <div id="wrapper">
 
       <!-- Sidebar -->
-      <ul class="sidebar navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="/">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/users-page">
-            <i class="fas fa-fw fa-users"></i>
-            <span>Clients</span></a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/catalog-page">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Catalogue Produits</span></a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/orders-list-page">
-            <i class="fas fa-shopping-basket"></i>
-            <span>Commandes</span></a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/charts">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
-        </li>
-      </ul>
+      <%- include('sidebar'); %>
 
       <div id="content-wrapper">
 
@@ -129,96 +68,24 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                    <% let gender = ""
+                    for(let i=0; i<usersList.length; i++){
+                      if(usersList[i].gender == "male"){
+                        gender = "fas fa-male";
+                      } else {
+                        gender = "fas fa-female";
+                      }
+                    %>
                     <tr>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>john@gmail.com</td>
-                      <td>*******</td>
-                      <td>22</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>12/11/2018</td>
+                      <td><%= usersList[i].firstName %></td>
+                      <td><%= usersList[i].lastName %></td>
+                      <td><%= usersList[i].email %></td>
+                      <td><%= usersList[i].password %></td>
+                      <td><%= usersList[i].age %></td>
+                      <td><i class="<%= gender %>"></i></td>
+                      <td><%= usersList[i].dateInsert %></td>
                     </tr>
-                    <tr>
-                      <td>Zoe</td>
-                      <td>Millo</td>
-                      <td>zomil@hotmail.com</td>
-                      <td>*******</td>
-                      <td>31</td>
-                      <td><i class="fas fa-female"></i></td>
-                      <td>15/01/2011</td>
-                    </tr>
-                    <tr>
-                      <td>Matt</td>
-                      <td>Kallil</td>
-                      <td>matt@gmail.com</td>
-                      <td>*******</td>
-                      <td>41</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>17/01/2019</td>
-                    </tr>
-                    <tr>
-                      <td>Jerome</td>
-                      <td>Kapa</td>
-                      <td>jekapa@gmail.com</td>
-                      <td>*******</td>
-                      <td>37</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>27/10/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Mika</td>
-                      <td>Louka</td>
-                      <td>louka7@hotmail.com</td>
-                      <td>*******</td>
-                      <td>25</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>16/10/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Samantha</td>
-                      <td>Tiralo</td>
-                      <td>sam@hotmail.com</td>
-                      <td>*******</td>
-                      <td>29</td>
-                      <td><i class="fas fa-female"></i></td>
-                      <td>13/09/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Elise</td>
-                      <td>Zaro</td>
-                      <td>elizaro@gmail.com</td>
-                      <td>*******</td>
-                      <td>21</td>
-                      <td><i class="fas fa-female"></i></td>
-                      <td>07/07/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Tom</td>
-                      <td>Jonaz</td>
-                      <td>tojo@hotmail.com</td>
-                      <td>*******</td>
-                      <td>36</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>26/09/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Tom</td>
-                      <td>Jonaz</td>
-                      <td>tojo@hotmail.com</td>
-                      <td>*******</td>
-                      <td>36</td>
-                      <td><i class="fas fa-male"></i></td>
-                      <td>26/09/2018</td>
-                    </tr>
-                    <tr>
-                      <td>Manon</td>
-                      <td>Viro</td>
-                      <td>viroman@gmail.com</td>
-                      <td>*******</td>
-                      <td>41</td>
-                      <td><i class="fas fa-female"></i></td>
-                      <td>01/07/2018</td>
-                    </tr>
+                    <% } %>
                   </tbody>
                 </table>
               </div>

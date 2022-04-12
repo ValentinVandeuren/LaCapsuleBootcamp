@@ -2,25 +2,49 @@ var express = require('express');
 var router = express.Router();
 let articlesModel = require('../models/articles');
 let commandesModel = require('../models/commandes');
+let usersModel = require('../models/users');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index');
+router.get('/', async function(req, res, next) {
+  let articles = await articlesModel.find();
+  let adminMT = await usersModel.findOne({ status: "admin" })
+  let messagesNonLu = [];
+  let tacheNonCloturer = [];
+  for(let i=0; i<adminMT.messages.length; i++){
+    if(adminMT.messages[i].read == false){
+      messagesNonLu.push(adminMT.messages[i]);
+    }
+  };
+  for(let i=0; i<adminMT.tasks.length; i++){
+    if(adminMT.tasks[i].dateCloture == null){
+      tacheNonCloturer.push(adminMT.tasks[i]);
+    }
+  };
+
+  res.render('index', { articles, tacheNonCloturer, messagesNonLu });
 });
 
 /* GET tasks page. */
-router.get('/tasks-page', function(req, res, next) {
-  res.render('tasks');
+router.get('/tasks-page', async function(req, res, next) {
+  let admin = await usersModel.findOne({ status : "admin" });
+  let adminTasks = admin.tasks;
+  
+  res.render('tasks', { adminTasks });
 });
 
 /* GET Messages page. */
-router.get('/messages-page', function(req, res, next) {
-  res.render('messages');
+router.get('/messages-page', async function(req, res, next) {
+  let admin = await usersModel.findOne({ status : "admin" });
+  let adminMessages = admin.messages
+
+  res.render('messages', { adminMessages });
 });
 
 /* GET Users page. */
-router.get('/users-page', function(req, res, next) {
-  res.render('users');
+router.get('/users-page', async function(req, res, next) {
+  let usersList = await usersModel.find({ status: "customer" });
+
+  res.render('users', { usersList });
 });
 
 /* GET Catalog page. */
