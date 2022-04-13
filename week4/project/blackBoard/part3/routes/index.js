@@ -71,11 +71,61 @@ router.get('/order-page', async function(req, res, next) {
 
 /* GET chart page. */
 router.get('/charts', async function(req, res, next) {
-  let usersList = await usersModel.aggregate();
-  usersList.group({ _id: "$gender", number: { $sum: "$gender" } })
-  var data = await aggregate.exec();
+  let usersList = await usersModel.find();
+  let adminMT = await usersModel.findOne({ status: "admin" });
+  let commandesList = await commandesModel.find();
+  
+  let maleCounter = 0;
+  let femaleCounter = 0;
+  let messagesNonLu = 0;
+  let messagesLu = 0;
+  let commandesPayeExpedie = 0;
+  let commandesPayeNonExpedie = 0;
 
-  res.render('charts', { data });
+  for(let i=0; i<usersList.length; i++){
+    if(usersList[i].gender == "male"){
+      maleCounter += 1;
+    } else {
+      femaleCounter += 1;
+    }
+  };
+
+  for(let i=0; i<adminMT.messages.length; i++){
+    if(adminMT.messages[i].read){
+      messagesLu += 1;
+    } else {
+      messagesNonLu += 1;
+    }
+  };
+
+  for(let i=0; i<commandesList.length; i++){
+    if( commandesList[i].status_payment == "validated" && commandesList[i].status_shipment == true ){
+      commandesPayeExpedie += 1;
+    } else if( commandesList[i].status_payment == "validated" && commandesList[i].status_shipment == false ){
+      commandesPayeNonExpedie += 1;
+    }
+  };
+
+  let aggr = commandesModel.aggregate();
+  aggr.match({status_payment: "validated"});
+  aggr.group({
+    _id: {
+      year: {$year: "$date_insert"},
+      month: {$month: "$date_insert"}
+    },
+    total: {$sum: "$total"}
+  })
+  let CA = await aggr.exec();
+
+  res.render('charts', { 
+    maleCounter,
+    femaleCounter,
+    messagesLu,
+    messagesNonLu,
+    commandesPayeExpedie,
+    commandesPayeNonExpedie,
+    CA
+  });
 });
 
 
