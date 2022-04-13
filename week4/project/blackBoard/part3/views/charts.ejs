@@ -43,7 +43,7 @@
           <div class="row">
 
             <div class="col-12 col-md-4 mb-3 chart">
-              <img class="img-fluid" src="/images/chart1.jpg">
+              <canvas id="genderChart" data-gendre="<%= data %>"></canvas>
             </div>
 
             <div class="col-12 col-md-4 mb-3 chart">
@@ -92,6 +92,9 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js "></script>
+    <script src="./js/dataviz.js"></script>
 
   </body>
 

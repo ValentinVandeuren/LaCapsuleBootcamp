@@ -1,4 +1,5 @@
 var express = require('express');
+const { aggregate } = require('../models/articles');
 var router = express.Router();
 let articlesModel = require('../models/articles');
 let commandesModel = require('../models/commandes');
@@ -69,8 +70,12 @@ router.get('/order-page', async function(req, res, next) {
 });
 
 /* GET chart page. */
-router.get('/charts', function(req, res, next) {
-  res.render('charts');
+router.get('/charts', async function(req, res, next) {
+  let usersList = await usersModel.aggregate();
+  usersList.group({ _id: "$gender", number: { $sum: "$gender" } })
+  var data = await aggregate.exec();
+
+  res.render('charts', { data });
 });
 
 
