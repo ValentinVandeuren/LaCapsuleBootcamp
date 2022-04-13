@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BlackBoard</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <%- include('header'); %>
+
+    <div id="wrapper">
+
+      <!-- Sidebar -->
+      <%- include('sidebar'); %>
+
+      <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+          <div class="card mb-3">
+            <div class="card-header">
+            <i class="fas fa-table"></i>
+             Liste des commandes</div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="product-list" class="table table-bordered" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Date Commande</th>
+                      <th>Total</th>
+                      <th>Frais de port</th>
+                      <th>Payée</th>
+                      <th>Date Paiement</th>
+                      <th>Expédiée</th>
+                      <th>Date Exp</th>
+                      <th>Adresse</th>
+                      <th>Ville</th>
+                      <th>Code postal</th>
+                      <th>Détail</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Date Commande</th>
+                      <th>Total</th>
+                      <th>Frais de port</th>
+                      <th>Payée</th>
+                      <th>Date Paiement</th>
+                      <th>Expédiée</th>
+                      <th>Date Exp</th>
+                      <th>Adresse</th>
+                      <th>Ville</th>
+                      <th>Code postal</th>
+                      <th>Détail</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    <% for(let i=0; i<commandes.length; i++){ 
+                      let statusPaiement = "";
+                      let datePayment = "";
+                      let statusShipment = "status-secondary";
+                      let dateShipment = "";
+
+                      if(commandes[i].status_payment == 'waiting'){
+                        statusPaiement = "status-secondary";
+                      } else if(commandes[i].status_payment == 'refused'){
+                        statusPaiement = "status-danger";
+                      } else if(commandes[i].status_payment == 'validated'){
+                        datePayment = commandes[i].date_payment
+                        statusPaiement = "status-success";
+                      }
+                      
+                      if(commandes[i].status_shipment){
+                        statusShipment = "status-success";
+                        dateShipment = commandes[i].date_shipment
+                      }
+                    %>
+                    <tr>
+                      <td><%= commandes[i].date_insert %></td>
+                      <td><%= commandes[i].total %></td>
+                      <td><%= commandes[i].shipping_cost %></td>
+                      <td class="<%= statusPaiement %>">
+                      <i class="fas fa-circle"></i></td>
+                      <td><%= datePayment %></td>
+                      <td class="<%= statusShipment %>"><i class="fas fa-circle"></i></td>
+                      <td><%= dateShipment %></td>
+                      <td><%= commandes[i].delivery_address %></td>
+                      <td><%= commandes[i].delivery_city %></td>
+                      <td><%= commandes[i].delivery_zipcode %></td>
+                      <td><a href="/order-page?orderId=<%= commandes[i].id %>">voir</a></td>
+                    </tr>
+                    <% } %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright © Blackboard</span>
+            </div>
+          </div>
+        </footer>
+
+      </div>
+      <!-- /.content-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin.min.js"></script>
+
+  </body>
+
+</html>
