@@ -39,6 +39,7 @@ const Cards = (props) => {
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
+                    ({props.moviesVote})
                 </CardText>
                 <CardText>{props.moviesNames}</CardText>
                 <CardText>{props.moviesDescriptions}</CardText>
