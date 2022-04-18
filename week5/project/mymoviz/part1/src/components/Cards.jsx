@@ -7,12 +7,14 @@ import {
   CardImg,
   CardBody,
   CardText,
+  Badge,
+  Button,
 } from "reactstrap";
-
+import '../styles/Home.css'
 
 const Cards = (props) => {
   return (
-          <Card>
+          <Card className="cardMovie p-0">
             <CardImg
               alt="Card image starwars"
               src={props.mouviesImages}
@@ -20,14 +22,16 @@ const Cards = (props) => {
               width="100%"
             />
             <CardBody>
-                <CardText>Like <FontAwesomeIcon icon={faHeart} /></CardText>
-                <CardText>Nombre de vues <FontAwesomeIcon icon={faVideo} /></CardText>
+                <CardText>Like <FontAwesomeIcon className="heartMovie" icon={faHeart} /></CardText>
+                <CardText>Nombre de vues <FontAwesomeIcon icon={faVideo} /><Badge className="m-2">{props.moviesViews}</Badge></CardText>
                 <CardText>Mon avis
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
+                    <Button className="m-2">-{props.moviesMin}</Button>
+                    <Button>+{props.moviesPlus}</Button>
                 </CardText>
                 <CardText>Moyenne
                     <FontAwesomeIcon icon={faStar} />
@@ -36,10 +40,8 @@ const Cards = (props) => {
                     <FontAwesomeIcon icon={faStar} />
                     <FontAwesomeIcon icon={faStar} />
                 </CardText>
-              <CardText>
-                Star Wars: l'Ascension de Skywalker <br />
-                La conclusion de la saga skywalker.De nouvelles légendes vont naitre dans cette...
-              </CardText>
+                <CardText>{props.moviesNames}</CardText>
+                <CardText>{props.moviesDescriptions}</CardText>
             </CardBody>
           </Card>
   );
