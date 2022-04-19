@@ -8,14 +8,13 @@ import {
   CardBody,
   CardText,
   Badge,
-  Button,
 } from "reactstrap";
 
   const Cards = (props) => {
-  const [like, setLike] = useState(false);
-  const [vieuw, setVieuw] = useState(false);
-  const [vieuwCounter, setVieuwCounter] = useState(0);
-  const [myRatingMovie, setMyRatingMovie] = useState(0)
+  let [like, setLike] = useState(false);
+  let [vieuw, setVieuw] = useState(false);
+  let [vieuwCounter, setVieuwCounter] = useState(0);
+  let [myRatingMovie, setMyRatingMovie] = useState(0)
 
   let handleHeartClick = () => {
     if(like === true){
@@ -42,6 +41,39 @@ import {
     }
   };
 
+  let handleStarClick = (counter) => {
+    setMyRatingMovie(myRatingMovie = counter+1)
+  }
+
+  let star = []
+  for(let i=0; i<10; i++){
+    let counter = i;
+    if(i<myRatingMovie){
+      star.push(<FontAwesomeIcon onClick={ () => handleStarClick(counter) } style={{color: "#F1C40E", cursor: "pointer"}} icon={faStar} />)
+    }else {
+      star.push(<FontAwesomeIcon onClick={ () => handleStarClick(counter) } style={{cursor: "pointer"}} icon={faStar} />)
+    }
+  };
+
+
+  let starMoyenne = [];
+  let moyenneCounter = 0
+  let counterVote = props.moviesVote;
+  if(myRatingMovie === 0){
+    moyenneCounter = props.moviesNote;
+  }else {
+    moyenneCounter = ((props.moviesNote * props.moviesVote) + myRatingMovie)/props.moviesVote + 1;
+    counterVote = props.moviesVote + 1;
+  }
+  for(let i=0; i<10; i++){
+    if(i< Math.round(moyenneCounter)){
+      starMoyenne.push(<FontAwesomeIcon style={{color: "#F1C40E"}} icon={faStar} />)
+    }else {
+      starMoyenne.push(<FontAwesomeIcon icon={faStar} />)
+    }
+  };
+
+
   let heartColor;
   let camColor;
   if(like === true ){
@@ -63,32 +95,13 @@ import {
                 <CardText>Like <FontAwesomeIcon onClick={ () => handleHeartClick() } className="heartMovie" style={heartColor} icon={faHeart} /></CardText>
                 <CardText>Nombre de vues <FontAwesomeIcon onClick={ () => handleCamClick() } className="camMovie" style={camColor} icon={faVideo} /><Badge className="m-2">{vieuwCounter}</Badge></CardText>
                 <CardText>Mon avis
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    ({myRatingMovie})
-                    <Button onClick={ () => handleMinVoteClick() } style={{fontSize: 15, paddingTop: 0, paddingBottom: 0}} className="m-2">-1</Button>
-                    <Button onClick={ () => handlePlusVoteClick() } style={{fontSize: 15, paddingTop: 0, paddingBottom: 0}}>+1</Button>
+                    {star}
+                    <Badge onClick={ () => handleMinVoteClick() } style={{ cursor: "pointer" }}>-</Badge>
+                    <Badge onClick={ () => handlePlusVoteClick() } style={{ cursor: "pointer" }}>+</Badge>
                 </CardText>
                 <CardText>Moyenne
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    <FontAwesomeIcon icon={faStar} />
-                    ({props.moviesVote})
+                    {starMoyenne}
+                    ({counterVote})
                 </CardText>
                 <CardText>{props.moviesNames}</CardText>
                 <CardText>{props.moviesDescriptions}</CardText>
