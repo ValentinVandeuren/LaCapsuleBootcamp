@@ -1,0 +1,27 @@
+.content {
+    background-color: #333A40;
+}
+
+.title {
+    color: #FFF;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.cardMovie{
+    margin-bottom: 10px;
+}
+
+.header {
+    margin-bottom: 40px;
+}
+
+.heartMovie:hover {
+    cursor: pointer;
+    color: #e74c3c;
+}
+
+.camMovie:hover {
+    cursor: pointer;
+    color: #e74c3c;
+}
