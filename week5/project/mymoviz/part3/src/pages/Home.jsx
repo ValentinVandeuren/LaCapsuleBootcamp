@@ -69,16 +69,13 @@ const Home = () => {
     
     let [moviesCount, setMoviesCount] = useState(0);
     let [wishlistFilm, setWishlistFilm] = useState([]);
-    let [wishlistFilmImg, setWishlistFilmImg] = useState([]);
     let handleClickAddMovie = (name, image) => {
         setMoviesCount(moviesCount +1);
-        setWishlistFilm( [...wishlistFilm, name ] )
-        setWishlistFilmImg( [...wishlistFilmImg, image ] )
+        setWishlistFilm( [...wishlistFilm, {name: name, img: image} ] )
     }
-    let handleClickRemoveMovie = (name, image) => {
+    let handleClickRemoveMovie = (name) => {
         setMoviesCount(moviesCount -1)
-        setWishlistFilm( wishlistFilm.filter((e) => (e !== name)) )
-        setWishlistFilmImg( wishlistFilmImg.filter((e) => (e !== image)) )
+        setWishlistFilm( wishlistFilm.filter((e) => (e.name !== name)) )
     }
     
     let moviesList = [];
@@ -92,6 +89,7 @@ const Home = () => {
           moviesVote={movieData[i].vote}
           handleClickAddMovieParent={handleClickAddMovie}
           handleClickRemoveMovieParent={handleClickRemoveMovie}
+          like={wishlistFilm.find((filmName) => filmName.name === movieData[i].name) ? true: false}
         />
       );
     };
@@ -100,7 +98,7 @@ const Home = () => {
     <div className="content">
       <Container>
         <CardGroup>
-          <Header counter={moviesCount} wishlistFilm={wishlistFilm} wishlistFilmImg={wishlistFilmImg} handleClickRemoveMovieParent={handleClickRemoveMovie}/>
+          <Header counter={moviesCount} wishlistFilm={wishlistFilm} handleClickRemoveMovieParent={handleClickRemoveMovie}/>
           <Row xs="1" lg="2" xl="3">
             {moviesList}
           </Row>

@@ -11,17 +11,17 @@ import {
 } from "reactstrap";
 
 const Cards = (props) => {
-  let [like, setLike] = useState(false);
+  // let [like, setLike] = useState(false);
   let [vieuw, setVieuw] = useState(false);
   let [vieuwCounter, setVieuwCounter] = useState(0);
   let [myRatingMovie, setMyRatingMovie] = useState(0)
 
   let handleHeartClick = () => {
-    if(like === true){
-      setLike(false);
-      props.handleClickRemoveMovieParent(props.moviesNames, props.mouviesImages);
+    if(props.like === true){
+      // setLike(false);
+      props.handleClickRemoveMovieParent(props.moviesNames);
     }else{
-      setLike(true);
+      // setLike(true);
       props.handleClickAddMovieParent(props.moviesNames, props.mouviesImages);
     }
   };
@@ -78,7 +78,7 @@ const Cards = (props) => {
 
   let heartColor;
   let camColor;
-  if(like === true ){
+  if(props.like === true ){
     heartColor = {color: "#e74c3c"};
   }
   if(vieuw === true){

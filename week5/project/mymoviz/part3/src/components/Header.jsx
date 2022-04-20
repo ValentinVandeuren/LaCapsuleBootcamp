@@ -4,31 +4,32 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Nav,
   NavItem,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  Button,
+  Popover,
+  PopoverHeader,
+  PopoverBody,
 } from "reactstrap";
 import "../styles/Home.css";
 
 const Header = (props) => {
-    let [isOpen, setIsOpen] = useState(false);
-    let handleButtonCLick = () => {
-        if(isOpen === false){
-            setIsOpen(isOpen = true);
-        }else {
-            setIsOpen(isOpen = false)
-        }
-    };
-
-    let handleItemWishClick = () => {
-      props.handleClickRemoveMovieParent()
+  let [isOpen, setIsOpen] = useState(false);
+  let handleButtonCLick = () => {
+    if (isOpen === false) {
+      setIsOpen((isOpen = true));
+    } else {
+      setIsOpen((isOpen = false));
     }
+  };
 
-    let finalList = [];
-    for(let i=0; i<props.wishlistFilm.length; i++){
-      finalList.push(<DropdownItem header style={{cursor: 'pointer'}} onClick={ () => handleItemWishClick() }><img className="imageDropDown" src={props.wishlistFilmImg[i]} alt="imageFilme"/>{props.wishlistFilm[i]}</DropdownItem>)
-    }
+  let handleCardClick = (name) => {
+    props.handleClickRemoveMovieParent(name)
+  }
+
+   const movieCard = props.wishlistFilm.map((movie) => {
+     return (
+       <PopoverBody onClick={ () => handleCardClick(movie.name) } style={{cursor: "pointer"}} > <img src={movie.img} alt="imageC" className="imageDropDown" /> {movie.name} </PopoverBody>
+     )
+   })
 
   return (
     <div className="header">
@@ -40,15 +41,16 @@ const Header = (props) => {
           <h4 className="title">Last Releases</h4>
         </NavItem>
         <NavItem>
-          {/* <Button>{props.counter} onClick={ () => handleFilmsClick() } films</Button> */}
-          <ButtonDropdown onClick={ () => handleButtonCLick() } isOpen={isOpen}>
-            <DropdownToggle caret>{props.counter} films</DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem header>Wishlist</DropdownItem>
-              <DropdownItem divider />
-              {finalList}
-            </DropdownMenu>
-          </ButtonDropdown>
+          <Button id="dropDownButton" onClick={ () => handleButtonCLick() }>{props.counter} films</Button>
+          <Popover 
+            flip
+            placement="bottom"
+            target="dropDownButton"
+            isOpen={isOpen}
+          >
+            <PopoverHeader>Wishlist</PopoverHeader>
+            {movieCard}
+          </Popover>
         </NavItem>
       </Nav>
     </div>
