@@ -11,3 +11,4 @@ mongoose.connect('mongodb+srv://admin:A4DItb9IftmaREmv@cluster0.hwwnz.mongodb.ne
     }
 );
 mongoose.connection.on("connected", () => console.log("La DB est connectée!"));
+
