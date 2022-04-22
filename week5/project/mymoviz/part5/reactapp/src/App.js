@@ -6,7 +6,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
         {/* path"*" redirige vers le home si l'url n'existe pas */}
         <Route path='*' element={<Home />} />
       </Routes>

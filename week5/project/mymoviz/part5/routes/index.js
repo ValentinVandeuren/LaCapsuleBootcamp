@@ -2,10 +2,11 @@ var express = require('express');
 var router = express.Router();
 let request = require("sync-request");
 let movieModel = require('../models/movies');
+let wishlistModel = require('../models/wishlist');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 
 router.get('/new-movies', function(req, res, next) {
@@ -42,9 +43,25 @@ router.post('/wishlist-movie', async function (req, res, next) {
 });
 
 router.delete('/wishlist-movie/:name', async function (req, res, next){
-  let deleteMovie = await movieModel.deleteOne({name : req.params.name});
+  let deleteMovie = await movieModel.delete({name : req.params.name});
 
   res.json(deleteMovie);
+})
+
+router.post('/add-movie', async function(req, res, next){
+  let wishlist = new wishlistModel({
+    name: req.body.name,
+    img: req.body.img,
+  });
+  await wishlist.save();
+})
+
+router.post('/remove-movie', async function(req, res, next){
+  await wishlistModel.deleteOne({name: req.body.name})
+})
+
+router.post('/wishlist', async function(req, res, next){
+  await wishlistModel.find()
 })
 
 module.exports = router;
