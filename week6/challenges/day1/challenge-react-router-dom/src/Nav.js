@@ -19,7 +19,7 @@ function Nav() {
         </li>
         <li style={{ color: "#FFF" }}>
           {isLogin ? 'Hello John ' : null}
-          <button style={{ padding: '6px', border: '0px', backgroundColor: "#25CCF7" }} to={isLogin ? "/": ""} onClick={() => handleClick()}>{isLogin ? 'Logout' : 'Login'}</button>
+          <button style={{ padding: '6px', border: '0px', backgroundColor: "#25CCF7" }} onClick={() => handleClick()}> <Link to={isLogin ? "/": ""}> {isLogin ? 'Logout' : 'Login'}</Link></button>
         </li>
       </ul>
     </nav>

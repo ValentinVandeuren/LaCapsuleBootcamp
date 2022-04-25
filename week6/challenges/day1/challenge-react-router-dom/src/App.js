@@ -10,7 +10,7 @@ function App() {
       <div style={{ display: 'flex', flexDirection: "column", height: '100vh' }}>
         <Nav />
         <Switch>
-          <Route path="/" component={Home} />
+          <Route path="/" exact component={Home} />
           <Route path="/about" component={About} />
         </Switch>
       </div>
