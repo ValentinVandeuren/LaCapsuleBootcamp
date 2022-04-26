@@ -3,6 +3,9 @@ import { Input, Button } from "antd";
 import { Redirect } from "react-router-dom";
 
 function ScreenHome() {
+  const [errMessage, setErrMessage] = useState("");
+  const [errMessageSignIn, setErrMessageSignIn] = useState("");
+
   const [nameSingUP, setNameSingUp] = useState("");
   const [emailSingUP, setEmailSingUp] = useState("");
   const [passwordSingUP, setPasswordSingUp] = useState("");
@@ -14,13 +17,23 @@ function ScreenHome() {
   const [isSignIn, setIsSignIn] = useState(false);
 
   const submitSingUP = async() => {
-    await fetch('/sign-up', {
+    const signUp = await fetch('/sign-up', {
       method: 'POST',
       headers: {'Content-Type':'application/x-www-form-urlencoded'},
       body: `name=${nameSingUP}&email=${emailSingUP}&password=${passwordSingUP}`
     })
-    setIsSignUp(true);
-  }
+    const signUpJSON = await signUp.json();
+
+    if(!signUpJSON.emailMessage && !signUpJSON.nameMessage && !signUpJSON.passwordMessage){
+      setIsSignUp(true);
+    }else if(signUpJSON.nameMessage){
+      setErrMessage(signUpJSON.nameMessage);
+    }else if(signUpJSON.emailMessage){
+      setErrMessage(signUpJSON.emailMessage);
+    }else if(signUpJSON.passwordMessage){
+      setErrMessage(signUpJSON.passwordMessage);
+    }
+  };
 
   const submitSingIN = async () => {
     const signIn = await fetch('/sign-in', {
@@ -29,7 +42,14 @@ function ScreenHome() {
       body: `email=${emailSingIN}&password=${passwordSingIN}`
     })
     const signInJSON = await signIn.json();
-    if(signInJSON.email != null) setIsSignIn(true);
+
+    if(signInJSON.emailMessageSignIn){
+      setErrMessageSignIn(signInJSON.emailMessageSignIn);
+    }else if(signInJSON.passwordFailedMessage){
+      setErrMessageSignIn(signInJSON.passwordFailedMessage);
+    }else if(signInJSON.isUser){
+      setIsSignIn(true);
+    };
   }
 
   if(isSignUp || isSignIn){
@@ -55,6 +75,8 @@ function ScreenHome() {
         onChange={(e) => setPasswordSingIN(e.target.value)}
           value={passwordSingIN}
         />
+
+        <p style={{color: "red"}}>{errMessageSignIn}</p>
 
         <Button
         style={{ width: "80px" }}
@@ -88,6 +110,8 @@ function ScreenHome() {
         onChange={(e) => setPasswordSingUp(e.target.value)}
         value={passwordSingUP}
         />
+
+        <p style={{color: "red"}}>{errMessage}</p>
 
         <Button
         style={{ width: "80px" }}
