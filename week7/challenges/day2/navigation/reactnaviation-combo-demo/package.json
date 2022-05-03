@@ -1,5 +1,5 @@
 {
-  "name": "reactnaviation-tabs-demo",
+  "name": "reactnaviation-combo-demo",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -10,7 +10,6 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@expo/ngrok": "^4.1.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^5.11.15",
     "@react-navigation/native": "^5.9.8",
