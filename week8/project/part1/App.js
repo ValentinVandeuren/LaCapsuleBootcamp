@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { LogBox } from 'react-native';
 LogBox.ignoreAllLogs();
 
+//test
+
 import HomeScreen from './components/HomeScreen';
 import ContentScreen from './ContentScreen'
 const Stack = createStackNavigator();
