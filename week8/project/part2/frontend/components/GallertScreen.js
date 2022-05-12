@@ -1,44 +1,24 @@
 import { View, ScrollView, Image, StyleSheet } from 'react-native';
 import { Text, Card, Badge } from 'react-native-elements'
 import React from 'react'
+import { connect } from 'react-redux';
 
-export default function GalleryScreen() {
+function GalleryScreen(props) {
+  var photoList = props.photo.map((image, i)=>{     
+  return  <Card>
+    <Card.Image source={{uri: image.url}} style={{ width:'100%', height:250, marginBottom:20, marginTop:0}}/>
+    <Badge status="success" value={<Text style={styles.badges}>Homme</Text>}/>
+    <Badge status="success" value={<Text style={styles.badges}>70 ans</Text>}/>
+    <Badge status="success" value={<Text style={styles.badges}>Barbe</Text>}/>
+    <Badge status="success" value={<Text style={styles.badges}>Heureux</Text>}/>
+    <Badge status="success" value={<Text style={styles.badges}>Cheveux Gris</Text>}/>
+    </Card>
+  });
   return (
     <View style={styles.container}>
         <ScrollView>
-            <Text style={styles.TitlePage}>Valentin's Gallery</Text>
-            <Card>
-                <Image source={require('../assets/picture-1.jpg')} style={{ width:'100%', height:250, marginBottom:20, marginTop:0}}/>
-                <Badge status="success" value={<Text style={styles.badges}>Homme</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>70 ans</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>Barbe</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>joyeux!</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>Cheveux Gris</Text>}/>
-            </Card>
-            <Card>
-                <Image source={require('../assets/picture-2.jpg')} style={{ width:'100%', height:250, marginBottom:20, marginTop:0}}/>
-                <Badge status="success" value={<Text style={styles.badges}>Homme</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>70 ans</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>Barbe</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>joyeux!</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>Cheveux Gris</Text>}/>
-            </Card>
-            <Card>
-                <Image source={require('../assets/picture-3.jpg')} style={{ width:'100%', height:250, marginBottom:20, marginTop:0}}/>
-                <Badge status="success" value={<Text style={styles.badges}>Homme</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>70 ans</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>Barbe</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>joyeux!</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>Cheveux Gris</Text>}/>
-            </Card>
-            <Card>
-                <Image source={require('../assets/picture-4.jpg')} style={{ width:'100%', height:250, marginBottom:20, marginTop:0}}/>
-                <Badge status="success" value={<Text style={styles.badges}>Homme</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>70 ans</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>Barbe</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>joyeux!</Text>}/>
-                <Badge status="success" value={<Text style={styles.badges}>Cheveux Gris</Text>}/>
-            </Card>
+            <Text style={StyleSheet.TitlePage}>Valentin's Gallery</Text>
+            {photoList}
         </ScrollView>
     </View>
   )
@@ -63,3 +43,12 @@ const styles = StyleSheet.create({
     textAlign:'center'
   }
 });
+
+function mapStateToProps(state){
+  return{
+      photo: state.photo
+  }
+}
+  
+export default connect(mapStateToProps, null)
+(GalleryScreen);
